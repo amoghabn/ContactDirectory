@@ -38,7 +38,7 @@ public class HomeController {
 	@RequestMapping("/")
 	public String home(Model model) {
 		model.addAttribute("title", "Home- Personal Contact Manager");
-		return "home";
+		return "index";
 	}
 	
 	@RequestMapping("/about")
