@@ -14,5 +14,5 @@ CMD ["/usr/sbin/mysqld", "--user=root"]
 WORKDIR /root
 RUN mkdir personalcontactmanager
 COPY . /root/personalcontactmanager
-#RUN mvn clean install
+
 

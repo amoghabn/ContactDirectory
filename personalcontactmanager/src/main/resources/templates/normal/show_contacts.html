@@ -7,7 +7,52 @@
   </head>
   <body>
 	<section>
-    <h2>here to write about view contacts</h2>
+		<div class="card mr-3 ml-3">
+		<div class="card-body bg-primary">
+    	<h1 class="text-center">My Contacts</h1>
+		  <table class="table text-white">
+		  <thead>
+		    <tr>
+		      <th scope="col">Id</th>
+		      <th scope="col">Name</th>
+		      <th scope="col">E-mail</th>
+		      <th scope="col">Contact Number</th>
+		      <th scope="col">Action</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+			 <tr th:each="contact : ${contacts}">
+		      <th scope="row" th:text="${'SCMUSER'+contact.cId}">1</th>
+		      <td>
+				  <img src="" class="my_profile_picture" th:src="@{'/img/'+${contact.image}}" alt="profile photo" />
+				  <a href="#" th:href="@{'/user/'+${contact.cId}+'/contact'}"> 
+					  <u><span th:text="${contact.name}"></span></u>
+				  </a>
+			  </td>
+		      <td th:text="${contact.email}">Otto</td>
+		      <td th:text="${contact.contactNumber}">@mdo</td>
+		      <td>
+<!--				  <a th:href="@{'/user/delete/'+${contact.cId}}" class="btn bg-primary btn-small text-white">Delete</a>-->
+				  <a href="#" th:onclick="|deleteContact(${contact.cId})|" class="btn bg-primary btn-small text-white">Delete</a>
+				  <form method="post" th:action="@{'/user/update-contact/'+${contact.cId}}" class="mt-2">
+				  <button type="submit" class="btn bg-primary btn-small text-white">Update</button>
+			      </form>
+			  </td>
+		    </tr>
+		  </tbody>
+		</table>	
+		
+<!--Pagination-->
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination">
+		    <li th:if="${currentPage != 0}" class="page-item"><a th:href="@{'/user/show-contacts/'+${currentPage-1}}" class="page-link bg-primary text-white" href="#">Previous</a></li>
+		    <li th:each="i : ${#numbers.sequence(1, totalPages)}" class="page-item"><a th:href="@{'/user/show-contacts/'+${i-1}}" class="page-link bg-primary text-white" href="#"><span th:text="${i}"></span></a></li>
+		    <li th:if="${currentPage+1 != totalPages}" class="page-item"><a th:href="@{'/user/show-contacts/'+${currentPage+1}}" class="page-link bg-primary text-white" href="#">Next</a></li>
+		  </ul>
+		   <h5 class="bg-primary btn-small text-white text-center"><span th:text="${currentPage+1}"></span></h5>
+		</nav>
+    	</div>
+    	</div>
     </section>
   </body>
 </html>

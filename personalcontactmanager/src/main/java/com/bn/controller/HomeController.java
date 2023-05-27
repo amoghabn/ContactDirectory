@@ -11,10 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.bn.dao.UserRepository;
 import com.bn.helper.Message;
 import com.bn.models.User;
@@ -35,19 +33,19 @@ public class HomeController {
 	@Autowired
 	private UserRepository userRepository;
 
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String home(Model model) {
 		model.addAttribute("title", "Home- Personal Contact Manager");
 		return "index";
 	}
 	
-	@RequestMapping("/about")
+	@GetMapping("/about")
 	public String about(Model model) {
 		model.addAttribute("title", "About- Personal Contact Manager");
 		return "about";
 	}
 	
-	@RequestMapping("/signup")
+	@GetMapping("/signup")
 	public String signup(Model model) {
 		model.addAttribute("title", "signup- Personal Contact Manager");
 		model.addAttribute("user", new User());	
@@ -55,7 +53,7 @@ public class HomeController {
 	}
 	
 	//handler for registering user
-	@RequestMapping(value="/do_register", method=RequestMethod.POST)
+	@PostMapping("/do_register")
 	public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, @RequestParam(value="agreement", defaultValue="false") boolean agreement, Model model, HttpSession session) {
 		
 		if(result.hasErrors()) {
@@ -75,7 +73,7 @@ public class HomeController {
 			user.setImageUrl("default.png");
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			
-			User res = this.userRepository.save(user);
+			this.userRepository.save(user);
 			model.addAttribute("user", new User());
 			session.setAttribute("message", new Message("Successfully Registered", "alert-success"));
 			
