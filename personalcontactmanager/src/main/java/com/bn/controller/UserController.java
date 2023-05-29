@@ -150,5 +150,41 @@ public class UserController {
 		return "normal/update_form";
 	}
 	
+	//update contact handler
+	@PostMapping("/process-update")
+	public String updateHandler(@ModelAttribute Contact contact, @RequestParam("profileImage") MultipartFile file, Model model, 
+			HttpSession session, Principal principal) {
+		
+		
+		try {
+			Contact oldcontactdetail = this.contactRepository.findById(contact.getcId()).get();
+			if (!file.isEmpty()) {
+				//delete old pic
+				File deleteFile = new ClassPathResource("static/img").getFile();
+				File dfile = new File(deleteFile, oldcontactdetail.getImage());
+				dfile.delete(); 
+				//Update new pic
+				File saveFile = new ClassPathResource("static/img").getFile();
+				Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
+				Files.copy(file.getInputStream(), path , StandardCopyOption.REPLACE_EXISTING);
+				contact.setImage(file.getOriginalFilename());
+			}
+			else {
+				contact.setImage(oldcontactdetail.getImage());
+			}
+			User user = this.userRepository.getuserByUserName(principal.getName());
+			contact.setUser(user);
+			this.contactRepository.save(contact);
+			session.setAttribute("message", new Message("contact details updated",  "success"));
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+
+		return "redirect:/user/"+contact.getcId()+"/contact"; 
+	} 
+	
 	
 }
