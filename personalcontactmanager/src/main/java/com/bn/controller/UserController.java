@@ -162,7 +162,7 @@ public class UserController {
 				//delete old pic
 //				File deleteFile = new ClassPathResource("static/img").getFile();
 //				File dfile = new File(deleteFile, oldcontactdetail.getImage());
-//				dfile.delete(); 
+//				dfile.delete(); 	
 				//Update new pic
 				File saveFile = new ClassPathResource("static/img").getFile();
 				Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
