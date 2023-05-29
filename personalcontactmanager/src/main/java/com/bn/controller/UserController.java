@@ -187,5 +187,8 @@ public class UserController {
 		return "redirect:/user/"+contact.getcId()+"/contact"; 
 	} 
 	
+	//your profile
+	
+	
 	
 }
