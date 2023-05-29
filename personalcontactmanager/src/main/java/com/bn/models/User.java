@@ -36,7 +36,7 @@ public class User {
 	private String about;
 	private String imageUrl;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch= FetchType.LAZY, mappedBy = "user")
+	@OneToMany(cascade = CascadeType.ALL, fetch= FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
 	private List<Contact> contacts = new ArrayList<>();
 	
 
