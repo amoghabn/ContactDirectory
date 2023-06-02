@@ -93,8 +93,9 @@ public class HomeController {
 	
 //handler for login 
 	@GetMapping("/signin")
-	public String customLogin(Model model) {
+	public String customLogin(Model model, HttpSession session) {
 		model.addAttribute("title", "login Page- Personal Contact Manager");
+		session.setAttribute("message", new Message(" ", "alert"));
 		return "login";
 	}
 

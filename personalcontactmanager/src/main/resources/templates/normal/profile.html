@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+  <head>
+    <meta charset="UTF-8">
+    <title>home html</title>
+  </head>
+  <body>
+	<section>
+    <div class="container">
+					<table class="table text-white">
+					  <thead>
+					    <tr>
+					      <th scope="col">USERID</th>
+					      <td>SCMUSER<span th:text="${user.id}"></span></td>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">E-mail</th>
+					      <td><span th:text="${user.email}"></span></td>
+					    </tr>
+					  	<tr>
+					      <th scope="row">Role</th>
+					      <td><span th:text="${user.role}"></span></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">About</th>
+					      <td><span th:text="${user.about}"></span></td>
+					    </tr>
+					  </tbody>
+					</table>
+	</div>
+    </section>
+  </body>
+</html>
