@@ -56,14 +56,14 @@ public class UserController {
 	}
 
 	@RequestMapping("/index")
-	public String dashboard(Model model, Principal principal) {
-		
+	public String dashboard(Model model, Principal principal, HttpSession session) {
+		session.setAttribute("message", new Message(" ", "alert"));
 		return "normal/user_dashboard";
 	}
 	
 	//open add form controller
 	@GetMapping("/add-contact")
-	public String openAddcontactForm(Model model) {
+	public String openAddcontactForm(Model model, HttpSession session) {
 		model.addAttribute("title", "Add Contact");
 		model.addAttribute("contact", new Contact());
 		return "normal/add_contact_form";
@@ -103,7 +103,7 @@ public class UserController {
 		user.getContacts().add(contact);
 		contact.setUser(user);
 		this.userRepository.save(user);
-		session.setAttribute("message", new Message("Contact is added!! Add more", "success"));
+		session.setAttribute("message", new Message("Contact is added!! Add more", "alert-success"));
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -113,7 +113,8 @@ public class UserController {
 	
 	//Show contacts handler
 	@GetMapping("/show-contacts/{page}")
-	public String showContact(@PathVariable("page") Integer page, Model model, Principal principal) {
+	public String showContact(@PathVariable("page") Integer page, Model model, Principal principal, HttpSession session) {
+		session.setAttribute("message", new Message(" ", "alert"));
 		model.addAttribute("title", "View Contacts");
 		String userName = principal.getName();
 		User user = this.userRepository.getuserByUserName(userName);

@@ -6,12 +6,14 @@
   </head>
   <body>
 	<section>
-	<div th:if="${session.message}" class="container text-center">
-	<div th:if="${session.message}" class="alert alert-success" role="alert">
+<!--	<div th:if="${session.message}" class="container text-center">-->
+<!--	<div th:if="${session.message}" class="alert alert-success" role="alert" th:text="${session.message.content}">-->
 <!--  		<span th:text="${session.message.content}"></span>-->
-  		contact added!! Add more
   		
-	</div>
+  		
+<!--	</div>-->
+<!--	</div>-->
+	<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert text-center" role="alert" th:text="${session.message.content}">				
 	</div>
     <div class="card mr-3">
 		<div class="card-body">
