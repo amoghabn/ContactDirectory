@@ -34,14 +34,16 @@ public class HomeController {
 	private UserRepository userRepository;
 
 	@GetMapping("/")
-	public String home(Model model) {
+	public String home(Model model, HttpSession session) {
 		model.addAttribute("title", "Home- Personal Contact Manager");
+		session.setAttribute("message", new Message(" ", "alert"));
 		return "index";
 	}
 	
 	@GetMapping("/about")
-	public String about(Model model) {
+	public String about(Model model, HttpSession session) {
 		model.addAttribute("title", "About- Personal Contact Manager");
+		session.setAttribute("message", new Message(" ", "alert"));
 		return "about";
 	}
 	

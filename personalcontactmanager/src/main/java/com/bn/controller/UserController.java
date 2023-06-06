@@ -58,6 +58,8 @@ public class UserController {
 	@RequestMapping("/index")
 	public String dashboard(Model model, Principal principal, HttpSession session) {
 		session.setAttribute("message", new Message(" ", "alert"));
+		session.setAttribute("message_addcontactform", new Message(" ", "alert"));
+		session.setAttribute("message_settings", new Message(" ", "alert"));
 		return "normal/user_dashboard";
 	}
 	
@@ -66,6 +68,8 @@ public class UserController {
 	public String openAddcontactForm(Model model, HttpSession session) {
 		model.addAttribute("title", "Add Contact");
 		model.addAttribute("contact", new Contact());
+		session.setAttribute("message", new Message(" ", "alert"));
+		session.setAttribute("message_settings", new Message(" ", "alert"));
 		return "normal/add_contact_form";
 	}
 	
@@ -103,7 +107,8 @@ public class UserController {
 		user.getContacts().add(contact);
 		contact.setUser(user);
 		this.userRepository.save(user);
-		session.setAttribute("message", new Message("Contact is added!! Add more", "alert-success"));
+		
+		session.setAttribute("message_addcontactform", new Message("Contact is added!! Add more", "alert-success"));
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -115,6 +120,8 @@ public class UserController {
 	@GetMapping("/show-contacts/{page}")
 	public String showContact(@PathVariable("page") Integer page, Model model, Principal principal, HttpSession session) {
 		session.setAttribute("message", new Message(" ", "alert"));
+		session.setAttribute("message_addcontactform", new Message(" ", "alert"));
+		session.setAttribute("message_settings", new Message(" ", "alert"));
 		model.addAttribute("title", "View Contacts");
 		String userName = principal.getName();
 		User user = this.userRepository.getuserByUserName(userName);
@@ -159,7 +166,7 @@ public class UserController {
 	//update contact handler
 	@PostMapping("/process-update")
 	public String updateHandler(@ModelAttribute Contact contact, @RequestParam("profileImage") MultipartFile file, Model model, 
-			HttpSession session, Principal principal) {
+			 Principal principal) {
 		
 		
 		try {
@@ -181,7 +188,6 @@ public class UserController {
 			User user = this.userRepository.getuserByUserName(principal.getName());
 			contact.setUser(user);
 			this.contactRepository.save(contact);
-			session.setAttribute("message", new Message("contact details updated",  "success"));
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -202,22 +208,23 @@ public class UserController {
 	//Settings Handler
 	@GetMapping("/settings")
 	public String openSettings(HttpSession session) {
-		 //session.setAttribute("message", new Message(" ", "alert"));
 		 return "normal/settings";
 	}
 	
 	//change password
 	@PostMapping("/change-password")
 	public String changePassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword, Principal principal, HttpSession session) {
+		session.setAttribute("message", new Message(" ", "alert"));
+		session.setAttribute("message_addcontactform", new Message(" ", "alert"));
 		User user = this.userRepository.getuserByUserName(principal.getName());       
 		if(this.bCryptPasswordEncoder.matches(oldPassword, user.getPassword())){
 			user.setPassword(bCryptPasswordEncoder.encode(newPassword));
 			this.userRepository.save(user);
-			session.setAttribute("message", new Message("password changed successfully", "alert-success"));
+			session.setAttribute("message_settings", new Message("password changed successfully", "alert-success"));
 		}
 		else {
 			System.out.println("old password doesnt match");
-			session.setAttribute("message", new Message("old password doesnt match", "alert-danger"));
+			session.setAttribute("message_settings", new Message("old password doesnt match", "alert-danger"));
 		}
 		
 		return "redirect:/user/settings";

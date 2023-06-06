@@ -7,7 +7,7 @@
   <body>
 	<section>
 	
-	<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert text-center" role="alert" th:text="${session.message.content}">				
+	<div th:if="${session.message_settings}" th:classappend="${session.message_settings.type}" class="alert text-center" role="alert" th:text="${session.message_settings.content}">				
 	</div>
 	<div class="container">
 	<div class="row">
