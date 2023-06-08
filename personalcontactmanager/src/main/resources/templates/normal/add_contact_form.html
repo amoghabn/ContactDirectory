@@ -5,17 +5,9 @@
     <title>home html</title>
   </head>
   <body>
-	<section>
-<!--	<div th:if="${session.message}" class="container text-center">-->
-<!--	<div th:if="${session.message}" class="alert alert-success" role="alert" th:text="${session.message.content}">-->
-<!--  		<span th:text="${session.message.content}"></span>-->
-  		
-  		
-<!--	</div>-->
-<!--	</div>-->
+	<section class="bg-primary2">
 	<div th:if="${session.message_addcontactform}" th:classappend="${session.message_addcontactform.type}" class="alert text-center" role="alert" th:text="${session.message_addcontactform.content}">				
 	</div>
-    <div class="card mr-3">
 		<div class="card-body">
 			<h1 class="text-center">Add Contact</h1>
 			<div class="container-fluid mt-1">
@@ -27,10 +19,8 @@
 					method="POST"
 					th:action="@{/user/process-contact}"
 					class="mt-2"
-					
 					>
 <!--					first name-->
-
 					<div class="input-group">
 						<div class="input-group-prepend">
 							<div class="input-group-text">
@@ -39,9 +29,7 @@
 						</div>
 						<input type="text" id="firstName" name="name" placeholder="Enter Name here" class="form-control bg-primary"/>
 					</div>
-					
 <!--					second Name-->
-
 					<div class="input-group mt-3">
 						<div class="input-group-prepend">
 							<div class="input-group-text">
@@ -50,7 +38,6 @@
 						</div>
 						<input type="text" id="secondName" name="secondName" placeholder="Enter Nick Name here" class="form-control bg-primary"/>
 					</div>
-					
 <!--					Contact Number-->
 					<div class="input-group mt-3">
 						<div class="input-group-prepend">
@@ -59,8 +46,7 @@
 							</div>
 						</div>
 						<input required min="10" max="13" type="number" id="contactNumber" name="contactNumber" placeholder="Enter Contact Number here" class="form-control bg-primary"/>
-					</div>
-					
+					</div>					
 <!--					Email field-->
 					<div class="input-group mt-3">
 						<div class="input-group-prepend">
@@ -69,8 +55,7 @@
 							</div>
 						</div>
 						<input required type="email" id="email" name="email" placeholder="Enter Email ID here" class="form-control bg-primary"/>
-					</div>
-					
+					</div>					
 <!--					work field-->
 					<div class="input-group mt-3">
 						<div class="input-group-prepend">
@@ -79,30 +64,24 @@
 							</div>
 						</div>
 						<input required type="text" id="work" name="work" placeholder="Enter Work here" class="form-control bg-primary"/>
-					</div>
-					
+					</div>					
 <!--					contact description-->
 					<div class="form-group mt-3">
 						<textarea id="mytextarea" name="about"  class="form-control bg-primary" rows="3" placeholder="Enter Description"></textarea>
-					</div>
-					
-<!--			Contact	Image Field-->
-			
+					</div>					
+<!--			Contact	Image Field-->			
 					<div class="custom-file">
 						<input type="file" name="profileImage"/>
-					</div>
-					
+					</div>					
 					<div class="container text-center">
 						<button  class="btn bg-primary  text-white">Save Contact</button>
 					</div>
-
 					</form>
 				</div>
 				
 			</div>
 			</div>
 		</div>
-	</div>
 	<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 	<script class="bg-primary">
       tinymce.init({

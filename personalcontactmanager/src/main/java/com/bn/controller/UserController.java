@@ -55,7 +55,7 @@ public class UserController {
 		model.addAttribute("user", user);
 	}
 
-	@RequestMapping("/index")
+	@GetMapping("/index")
 	public String dashboard(Model model, Principal principal, HttpSession session) {
 		session.setAttribute("message", new Message(" ", "alert"));
 		session.setAttribute("message_addcontactform", new Message(" ", "alert"));
@@ -72,18 +72,6 @@ public class UserController {
 		session.setAttribute("message_settings", new Message(" ", "alert"));
 		return "normal/add_contact_form";
 	}
-	
-//	//processing Add contact form
-//	@PostMapping("/process-contact")
-//	public String processContact(@ModelAttribute Contact contact,  Principal principal, HttpSession session){
-//		String name = principal.getName();
-//		User user = this.userRepository.getuserByUserName(name);		
-//		contact.setUser(user);
-//		user.getContacts().add(contact);
-//		this.userRepository.save(user);
-//		session.setAttribute("message", new Message("Contact is added!! Add more", "success"));
-//		return "normal/add_contact_form";	
-//	}
 	
 	//processing Add contact form
 	@PostMapping("/process-contact")
@@ -192,9 +180,6 @@ public class UserController {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-
 		return "redirect:/user/"+contact.getcId()+"/contact"; 
 	} 
 	

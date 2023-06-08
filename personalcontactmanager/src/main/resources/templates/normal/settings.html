@@ -6,41 +6,30 @@
   </head>
   <body>
 	<section>
-	
 	<div th:if="${session.message_settings}" th:classappend="${session.message_settings.type}" class="alert text-center" role="alert" th:text="${session.message_settings.content}">				
 	</div>
 	<div class="container">
 	<div class="row">
 	<div class="col-md-12">
-		<div class="card">
-		<div class="card-body">
-			
+		<div class="card-body bg-primary2">
 		<h3 class="mb-3">Change Password</h3>
 		<form th:action="@{/user/change-password}" method="post">
 			<div class="form-group">
-				<input name="oldPassword" type="text" class="form-control" placeholder="Enter old password"/>
+				<input name="oldPassword" type="text" class="form-control bg-primary" placeholder="Enter old password"/>
 			</div>
 			
 			<div class="form-group">
-				<input name="newPassword" type="text" class="form-control" placeholder="Enter New password"/>
+				<input name="newPassword" type="text" class="form-control bg-primary" placeholder="Enter New password"/>
 			</div>
 			<div class="container text-center">
 				<button  type="submit" class="btn bg-primary text-white">Change password</button>
 				<button  type="reset" class="btn bg-primary text-white">Reset</button>
 			</div>
 		</form>	
-		</div>	
 		</div>
 	</div>
 	</div>	
 	</div>
-	
-<!--	<script>-->
-<!--	$(document).ready(()=>{-->
-<!--		$(".item").removeClass("active");-->
-<!--		$("#settings-link").addClass("active");-->
-<!--	});-->
-<!--	</script>-->
     </section>
   </body>
 </html>

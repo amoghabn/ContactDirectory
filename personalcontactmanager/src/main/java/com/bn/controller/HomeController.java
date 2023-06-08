@@ -1,11 +1,7 @@
 package com.bn.controller;
 
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,8 +17,6 @@ import jakarta.servlet.http.HttpSession;
 
 import jakarta.validation.Valid;
 
-
-//import ch.qos.logback.core.model.Model;
 
 @Controller
 public class HomeController {
@@ -74,7 +68,6 @@ public class HomeController {
 			user.setEnabled(true);
 			user.setImageUrl("default.png");
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
-			
 			this.userRepository.save(user);
 			model.addAttribute("user", new User());
 			session.setAttribute("message", new Message("Successfully Registered", "alert-success"));
@@ -84,13 +77,9 @@ public class HomeController {
 		{
 			e.printStackTrace();
 			model.addAttribute("user", user);
-			
 			session.setAttribute("message", new Message("Something went wrong "+e.getMessage(), "alert-danger"));
-					
 		}
-		
 		return "signup";
-		
 	}
 	
 //handler for login 

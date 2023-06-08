@@ -6,16 +6,11 @@
     <title>home html</title>
   </head>
   <body>
-	<section>
+	<section class="bg-primary">
     <div class="container">
 		<div class="row">
 			<div class="col-md-6 offset-md-3">
-			<div class="my-card">	
-
-
 			<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert text-center" role="alert"  th:text="${session.message.content}" >
-<!--  				 <p class="text-center" th:text="${session.message.content}"></p>-->
-<!--					<th:block th:text="${#session.setAttribute("message", new Message(" ", "alert-success")}"></th:block>-->
 			</div>
 			
 			
@@ -24,7 +19,7 @@
 <!--  				 <th:block th:text="${#session.removeAttribute('message')}"></th:block>-->
 <!--			</div>-->
 
-			<h1 class="text-center text-white">Register</h1>
+			<h3 class="text-center text-white">Register</h3>
 			<form action="" th:action="@{/do_register}" method="post" th:object="${user}">
 			
 			<!-- name-field-->
@@ -41,17 +36,12 @@
 		    	th:value="${user.name}"
 		    	th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
 		    	/>
-		    	
 		    	<div th:each="e : ${#fields.errors('name')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
-        			
       			</div>
-<!--		    	<p th:each="e : ${#fields.errors('name')}" th:text="${e}" class="text-white"> </p>-->
-		    	
-		    	
-		   </div>
+	    </div>
 			
 			<!-- email-field-->
-			<div class="form-group">
+		<div class="form-group">
 		    <label for="email_field" class="text-white">Email address</label>
 		    <input type="email" 
 		    	name="email"
@@ -62,10 +52,8 @@
 		    	required
 		    	th:value="${user.email}"
 		    	/>
-		    	
-		    
-		    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-		 </div>
+		    <small id="emailHelp" class="form-text text-white">We'll never share your email with anyone else.</small>
+		</div>
 		 
 		<!-- password-field-->
 			
@@ -80,16 +68,13 @@
 		    	required
 		    	/>
 		    
-		   </div>
-		   
-		   
+		</div>
+		   		   
 		   		<!-- about-field-->
 			
 		<div class="form-group">
-		    
 		    <textarea name="about" th:value="${user.about}" class="form-control" rows=4 placeholder="About yourself"></textarea>
-		   
-		  </div>
+		</div>
 		  
 		  <!--terms and conditioons agreement-->
 			<div class="form-group form-check text-center">
@@ -97,19 +82,15 @@
 				<label for="agreement" class="text-white">Accept Terms and Conditions</label>
 			</div>
 			
-		<div class="container text-center">
+		<div class="form-group text-center">
 		    <button type="submit" class="btn bg-primary text-white ">Submit</button>
 		    <button type="reset" class="btn bg-primary text-white ">Reset</button>
-		   
-		  </div>
+		 </div>
 			
 			</form>
 			</div>
-			</divclass>
-		</divclass>
-		
+		</div>
 	</div>
-    
     </section>
   </body>
 </html>
