@@ -1,5 +1,7 @@
 package com.bn.models;
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ public class Contact {
 	private String work;
 	private String email;
 	private String image;
-	private int contactNumber;
+	private long contactNumber;
 	@Column(length=50000)
 	private String about;
 	
@@ -77,11 +79,11 @@ public class Contact {
 		this.image = image;
 	}
 
-	public int getContactNumber() {
+	public long getContactNumber() {
 		return contactNumber;
 	}
 
-	public void setContactNumber(int contactNumber) {
+	public void setContactNumber(long contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 

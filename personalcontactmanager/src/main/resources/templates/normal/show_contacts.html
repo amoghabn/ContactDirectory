@@ -42,10 +42,10 @@
 		</table>	
 		</div>
 <!--Pagination-->
-		<nav aria-label="Page navigation example">
+		<nav th:if="${totalPages != 0}" aria-label="Page navigation example">
 		  <ul class="pagination">
 		    <li th:if="${currentPage != 0}" class="page-item"><a th:href="@{'/user/show-contacts/'+${currentPage-1}}" class="page-link bg-primary text-white" href="#">Previous</a></li>
-		    <li th:each="i : ${#numbers.sequence(1, totalPages)}" class="page-item"><a th:href="@{'/user/show-contacts/'+${i-1}}" class="page-link bg-primary text-white" href="#"><span th:text="${i}"></span></a></li>
+		    <li th:if="${totalPages != 0}" th:each="i : ${#numbers.sequence(1, totalPages)}" class="page-item"><a th:href="@{'/user/show-contacts/'+${i-1}}" class="page-link bg-primary text-white" href="#"><span th:text="${i}"></span></a></li>
 		    <li th:if="${currentPage+1 != totalPages}" class="page-item"><a th:href="@{'/user/show-contacts/'+${currentPage+1}}" class="page-link bg-primary text-white" href="#">Next</a></li>
 		  </ul>
 		   <h5 class="bg-primary2 btn-small text-white text-center"><span th:text="${currentPage+1}"></span></h5>
