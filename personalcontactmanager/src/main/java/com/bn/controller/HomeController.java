@@ -1,5 +1,8 @@
 package com.bn.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -52,6 +55,11 @@ public class HomeController {
 	@PostMapping("/do_register")
 	public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, @RequestParam(value="agreement", defaultValue="false") boolean agreement, Model model, HttpSession session) {
 		
+			
+		
+		
+		
+		
 		if(result.hasErrors()) {
 			System.out.println(result);
 			 return "signup";
@@ -64,10 +72,25 @@ public class HomeController {
 				System.out.println("You have not agreed to terms and conditions");
 				throw new Exception("You have not agreed to terms and conditions");
 			}
+			List<User> userList = this.userRepository.findAll();
+			List<String> emailList = new ArrayList<>();
+			for(User u : userList){
+				emailList.add(u.getEmail());
+			}
+			
+			
+			if(emailList.contains(user.getEmail()))
+			{
+				System.out.println("email ID already registered");
+				throw new Exception("This email ID is already registered");
+			}
+		
+			
 			user.setRole("ROLE_USER");
 			user.setEnabled(true);
 			user.setImageUrl("default.png");
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			
 			this.userRepository.save(user);
 			model.addAttribute("user", new User());
 			session.setAttribute("message", new Message("Successfully Registered", "alert-success"));

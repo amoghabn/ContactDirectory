@@ -22,7 +22,7 @@
 		  </thead>
 		  <tbody>
 			 <tr th:each="contact : ${contacts}">
-		      <th scope="row" th:text="${'SCMUSER'+contact.cId}">1</th>
+		      <th scope="row" th:text="${'PCDUSER'+contact.cId}">1</th>
 		      <td>
 				  <img src="" class="my_profile_picture" th:src="@{'/img/'+${contact.image}}" alt="profile photo" />
 				  <a href="#" th:href="@{'/user/'+${contact.cId}+'/contact'}"> 

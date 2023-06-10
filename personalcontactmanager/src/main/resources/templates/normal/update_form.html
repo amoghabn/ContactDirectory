@@ -50,7 +50,8 @@
 								<i class="fa fa-phone"></i>
 							</div>
 						</div>
-						<input th:value="${contact.contactNumber}"  required min="10" max="13" type="number" id="contactNumber" name="contactNumber" placeholder="Enter Contact Number here" class="form-control bg-primary"/>
+					<input th:value="${contact.contactNumber}" type="number" maxlength="15" oninput="javascript: if (this.value.length > 15) this.value = this.value.slice(0, 15);" 
+						id="contactNumber" name="contactNumber" placeholder="Enter Contact Number here" class="form-control bg-primary"/>
 					</div>
 					
 <!--					Email field-->
