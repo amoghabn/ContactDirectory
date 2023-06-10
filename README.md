@@ -1,4 +1,4 @@
-# contactdirectory
+# Personal Contact Directory
 
 #### Docker URL: https://hub.docker.com/repository/docker/amoghabn/pcdapprepo/general
 #### Docker image: amoghabn/pcdapprepo
