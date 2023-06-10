@@ -12,11 +12,11 @@
   #### 3. To open a Bash shell inside the running Docker container named "cdapp", allowing the user to execute commands inside the container interactively.
   docker exec -it cdapp /bin/bash
   #### 4. commands to run within the container to start the application
-  cd personalcontactmanager
-  mvn clean
-  mvn install
-  cd target
-  java -jar personalcontactmanager-0.0.1-SNAPSHOT.jar
+  ##### cd personalcontactmanager
+  ##### mvn clean
+  ##### mvn install
+  ##### cd target
+  ##### java -jar personalcontactmanager-0.0.1-SNAPSHOT.jar
   #### 5. To open the application from the browser:
   open http://localhost:8282/
      
