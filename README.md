@@ -20,7 +20,7 @@
   #### 5. To open the application from the browser:
   open http://localhost:8282/
      
-@echo off
+---------------------
 ### Project Overview
 -------------------
 #### This project aims to provide a robust and secure web application for managing personal contacts.
@@ -32,3 +32,4 @@
 #### Spring Security: Implements security features to ensure secure access to resources.
 #### Thymeleaf: Server-side rendering of HTML views.
 #### CSS: Used for styling HTML content.
+#### Docker: The application has been containerized using Docker for easy deployment and portability.
