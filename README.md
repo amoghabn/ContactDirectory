@@ -21,14 +21,14 @@
   open http://localhost:8282/
      
 @echo off
-echo Project Overview
-echo ---------------
-echo This project aims to provide a robust and secure web application for managing personal contacts.
-echo 
-echo Technologies Used
-echo -----------------
-echo - Spring Boot: Used to develop a web application with data persistence using JPA.
-echo - MySQL: Database connectivity is implemented using MySQL.
-echo - Spring Security: Implements security features to ensure secure access to resources.
-echo - Thymeleaf: Server-side rendering of HTML views.
-echo - CSS: Used for styling HTML content.
+### Project Overview
+-------------------
+#### This project aims to provide a robust and secure web application for managing personal contacts.
+ 
+### Technologies Used
+-------------------
+#### Spring Boot: Used to develop a web application with data persistence using JPA.
+#### MySQL: Database connectivity is implemented using MySQL.
+#### Spring Security: Implements security features to ensure secure access to resources.
+#### Thymeleaf: Server-side rendering of HTML views.
+#### CSS: Used for styling HTML content.
