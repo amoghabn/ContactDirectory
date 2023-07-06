@@ -28,6 +28,7 @@
 ### Technologies Used
 -------------------
 #### Spring Boot: Used to develop a web application with data persistence using JPA.
+#### Maven: The project is built and managed using Maven, a build automation tool for Java projects.
 #### MySQL: Database connectivity is implemented using MySQL.
 #### Spring Security: Implements security features to ensure secure access to resources.
 #### Thymeleaf: Server-side rendering of HTML views.
