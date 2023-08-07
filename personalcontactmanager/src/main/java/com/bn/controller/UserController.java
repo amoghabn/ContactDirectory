@@ -75,32 +75,34 @@ public class UserController {
 	
 	//processing Add contact form
 	@PostMapping("/process-contact")
-	public String processContact(@ModelAttribute Contact contact, @RequestParam("profileImage") MultipartFile file, Principal principal, HttpSession session){
-		try {
+	public String processContact(@ModelAttribute Contact contact, Principal principal, HttpSession session){
+//		try {
 		String name = principal.getName();
-		User user = this.userRepository.getuserByUserName(name);	
+		User user = this.userRepository.getuserByUserName(name);
+		contact.setImage("contact.png");
 		//Processing and uploading file
-		if(file.isEmpty()) {
-			System.out.println("empty file");
-			contact.setImage("contact.png");
-		}
-		else {
-			String filename = file.getOriginalFilename();
-			contact.setImage(filename);
-			File saveFile = new ClassPathResource("static/img").getFile();
-			Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
-			Files.copy(file.getInputStream(), path , StandardCopyOption.REPLACE_EXISTING);	 
-		}
+//		if(file.isEmpty()) {
+//			System.out.println("empty file");
+//			contact.setImage("contact.png");
+//		}
+//		else {
+//			String filename = file.getOriginalFilename();
+//			contact.setImage(filename);
+//			File saveFile = new ClassPathResource("static/img").getFile();
+//			Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
+//			Files.copy(file.getInputStream(), path , StandardCopyOption.REPLACE_EXISTING);	 
+//			
+//		}
 		
 		user.getContacts().add(contact);
 		contact.setUser(user);
 		this.userRepository.save(user);
 		
 		session.setAttribute("message_addcontactform", new Message("Contact is added!! Add more", "alert-success"));
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
+		//}
+//		catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		return "normal/add_contact_form";	
 	}
 	
@@ -152,34 +154,36 @@ public class UserController {
 	}
 	
 	//update contact handler
+	//@RequestParam("profileImage") MultipartFile file,
 	@PostMapping("/process-update")
-	public String updateHandler(@ModelAttribute Contact contact, @RequestParam("profileImage") MultipartFile file, Model model, 
+	public String updateHandler(@ModelAttribute Contact contact,  Model model, 
 			 Principal principal) {
 		
 		
-		try {
+//		try {
 			Contact oldcontactdetail = this.contactRepository.findById(contact.getcId()).get();
-			if (!file.isEmpty()) {
-				//delete old pic
-//				File deleteFile = new ClassPathResource("static/img").getFile();
-//				File dfile = new File(deleteFile, oldcontactdetail.getImage());
-//				dfile.delete(); 	
-				//Update new pic
-				File saveFile = new ClassPathResource("static/img").getFile();
-				Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
-				Files.copy(file.getInputStream(), path , StandardCopyOption.REPLACE_EXISTING);
-				contact.setImage(file.getOriginalFilename());
-			}
-			else {
-				contact.setImage(oldcontactdetail.getImage());
-			}
+//			if (!file.isEmpty()) {
+//				//delete old pic
+////				File deleteFile = new ClassPathResource("static/img").getFile();
+////				File dfile = new File(deleteFile, oldcontactdetail.getImage());
+////				dfile.delete(); 	
+//				//Update new pic
+//				File saveFile = new ClassPathResource("static/img").getFile();
+//				Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
+//				Files.copy(file.getInputStream(), path , StandardCopyOption.REPLACE_EXISTING);
+//				contact.setImage(file.getOriginalFilename());
+//			}
+//			else {
+//				contact.setImage(oldcontactdetail.getImage());
+//			}
 			User user = this.userRepository.getuserByUserName(principal.getName());
+			contact.setImage("contact.png");
 			contact.setUser(user);
 			this.contactRepository.save(contact);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
+//		}
+//		catch(Exception e) {
+//			e.printStackTrace();
+//		}
 		return "redirect:/user/"+contact.getcId()+"/contact"; 
 	} 
 	
