@@ -13,6 +13,7 @@
   `docker exec -it cdapp /bin/bash`
   #### STEP 4. commands to run within the container to start the application
   ##### run `cd personalcontactmanager`
+  ##### run `service mysql start`
   ##### run `./setup-mysql.sh`
   ##### run `mvn clean install`
   ##### run `cd target`
